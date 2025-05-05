@@ -137,7 +137,7 @@
               <span>ADMIN</span>
             </li>
             <li>
-              <hr class="dropdown-divider">
+           <hr class="dropdown-divider">
             </li>
 
             
@@ -153,7 +153,7 @@
             </li>
 
           </ul><!-- End Profile Dropdown Items -->
-        </li><!-- End Profile Nav -->
+        </li><!-- End Profile Nav -->   
 
       </ul>
     </nav><!-- End Icons Navigation -->
@@ -386,7 +386,7 @@
       <nav>
         <ol class="breadcrumb">
           <li class="breadcrumb-item"><a href="index.php">Home</a></li>
-          <li class="breadcrumb-item active">Dashboard</li>
+          <li class="breadcrumb-item active">Beranda</li>
         </ol>
       </nav>
     </div><!-- End Beranda Title -->
@@ -430,7 +430,7 @@
                 </div>
 
                 <div class="card-body">
-                  <h5 class="card-title">Penjualan <span>| Today</span></h5>
+                  <h5 class="card-title">Penjualan <span>| Hari ini</span></h5>
 
                   <div class="d-flex align-items-center">
                     <div class="card-icon rounded-circle d-flex align-items-center justify-content-center">
@@ -472,7 +472,7 @@
                       <i class="bi bi-currency-dollar"></i>
                     </div>
                     <div class="ps-3">
-                      <h6>$3,264</h6>
+                      <h6>Rp3,264</h6>
                       <span class="text-success small pt-1 fw-bold">8%</span> <span class="text-muted small pt-2 ps-1">increase</span>
 
                     </div>
@@ -519,13 +519,12 @@
     <div class="copyright">
       &copy; Copyright <strong><span>FutureHouse</span></strong>. All Rights Reserved
     </div>
-    <div class="FutureHouse">
+    <div class="credits">
       <!-- All the links in the footer should remain intact. -->
       <!-- You can delete the links only if you purchased the pro version. -->
       <!-- Licensing information: https://bootstrapmade.com/license/ -->
       <!-- Purchase the pro version with working PHP/AJAX contact form: https://bootstrapmade.com/nice-admin-bootstrap-admin-html-template/ -->
-      Designed by <a href="https://www.instagram.com/afiqfc21/"
-        target="blank">OnlyTeamFc</a>
+      Designed by <a href="https://www.instagram.com/afiqfc21/"target="blank"> OnlyTeamFc</a>
     </div>
   </footer><!-- End Footer -->
 
