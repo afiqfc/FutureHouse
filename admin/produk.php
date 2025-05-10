@@ -99,13 +99,13 @@
 
             <li class="nav-item">
                 <a class="nav-link collapsed" href="index.php">
-                    <i class="bi bi-grid"></i>
+                    <i class="bi bi-house-door"></i>
                     <span>Beranda</span>
                 </a>
             </li><!-- End Dashboard Nav -->
             <li class="nav-item">
                 <a class="nav-link collapsed" href="kategori.php">
-                    <i class="bi bi-airplane"></i>
+                    <i class="bi bi-tags"></i>
                     <span>Kategori</span>
                 </a>
             </li><!-- End Kategori Page Nav -->
