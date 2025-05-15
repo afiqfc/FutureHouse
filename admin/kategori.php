@@ -1,3 +1,23 @@
+<?php
+session_start();
+include "koneksi.php";
+
+// Cek apakah sudah login
+if (!isset($_SESSION["login"])) {
+  header("Location: login.php");
+  exit;
+}
+
+// Cek apakah status tersedia dan pastikan user adalah admin
+if (!isset($_SESSION["status"]) || $_SESSION["status"] !== "admin") {
+  echo "<script>
+    alert('Akses ditolak! Halaman ini hanya untuk Admin.');
+    window.location.href='login.php';
+  </script>";
+  exit;
+}
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -5,7 +25,7 @@
   <meta charset="utf-8">
   <meta content="width=device-width, initial-scale=1.0" name="viewport">
 
-  <title>kategori - FutureHouse Admin</title>
+  <title>Kategori - FutureHouse Admin</title>
   <meta content="" name="description">
   <meta content="" name="keywords">
 
@@ -71,30 +91,21 @@
         
         <li class="nav-item dropdown pe-3">
 
-        <a class="nav-link nav-profile d-flex align-items-center pe-0" href="#" data-bs-toggle="dropdown">
-            <img src="assets/img/profilku.jpg" alt="Profile" class="rounded-circle">
-          </a><!-- End Profile Iamge Icon -->
+<a class="nav-link nav-profile d-flex align-items-center pe-0" href="#" data-bs-toggle="dropdown">
+    <img src="assets/img/user.jpg" alt="Profile" class="rounded-circle">
+</a><!-- End Profile Iamge Icon -->
 
-          <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow profile">
-            <li class="dropdown-header">
-              <h6>AFIQ</h6>
-              <span>Admin</span>
-            </li>
-            <li>
-              <hr class="dropdown-divider">
-            </li>
-
-
-            <li>
-              <hr class="dropdown-divider">
-            </li>
-
-            <li>
-              <a class="dropdown-item d-flex align-items-center" href="#">
-                <i class="bi bi-box-arrow-right"></i>
-                <span>Sign Out</span>
-              </a>
-            </li>
+<ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow profile">
+    <li class="dropdown-header">
+        <h6><?php echo isset($_SESSION['username']) ? htmlspecialchars($_SESSION['username']) : 'Guest'; ?></h6>
+        <span>Admin</span>
+    </li>
+    <li>
+        <a class="dropdown-item d-flex align-items-center" href="logout.php">
+            <i class="bi bi-box-arrow-right"></i>
+            <span>Sign Out</span>
+        </a>
+    </li>
 
           </ul><!-- End Profile Dropdown Items -->
         </li><!-- End Profile Nav -->
@@ -180,7 +191,7 @@
           <div class="card">
             <div class="card-body">
                 <a href="t_kategori.php" class="btn btn-primary mt-3">
-                    <i class="bi bi-plus-lg"></i> tambah data 
+                    <i class="bi bi-plus-lg"></i> Tambah data 
                 </a>
             </div>
           </div>
@@ -208,9 +219,7 @@
                   $no = 1;
                   
                   // Cek apakah ada pencarian
-                  $query = isset($_POST['query']) ?
-                  mysqli_real_escape_string($koneksi, $_post
-                  ['query']) : '';
+                  $query = isset($_POST['query']) ? mysqli_real_escape_string($koneksi, $_POST['query']) : '';
                   
                   // Query dasar
                   $sql_query = "SELECT id_kategori, nm_kategori FROM tb_kategori";

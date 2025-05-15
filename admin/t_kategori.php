@@ -23,6 +23,26 @@ if (isset($_POST['simpan'])) {
 
 ?>
 
+<?php
+session_start();
+include "koneksi.php";
+
+// Cek apakah sudah login
+if (!isset($_SESSION["login"])) {
+  header("Location: login.php");
+  exit;
+}
+
+// Cek apakah status tersedia dan pastikan user adalah admin
+if (!isset($_SESSION["status"]) || $_SESSION["status"] !== "admin") {
+  echo "<script>
+    alert('Akses ditolak! Halaman ini hanya untuk Admin.');
+    window.location.href='login.php';
+  </script>";
+  exit;
+}
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -77,40 +97,36 @@ if (isset($_POST['simpan'])) {
     </div><!-- End Logo -->
 
     <nav class="header-nav ms-auto">
-      <ul class="d-flex align-items-center">
+            <ul class="d-flex align-items-center">
 
-        <li class="nav-item d-block d-lg-none">
-          <a class="nav-link nav-icon search-bar-toggle " href="#">
-            <i class="bi bi-search"></i>
-          </a>
-        </li><!-- End Search Icon-->
+                <li class="nav-item d-block d-lg-none">
+                    <a class="nav-link nav-icon search-bar-toggle " href="#">
+                        <i class="bi bi-search"></i>
+                    </a>
+                </li><!-- End Search Icon-->
+                <li class="nav-item dropdown pe-3">
 
-        <li class="nav-item dropdown pe-3">
+                    <a class="nav-link nav-profile d-flex align-items-center pe-0" href="#" data-bs-toggle="dropdown">
+                        <img src="assets/img/user.jpg" alt="Profile" class="rounded-circle">
+                    </a><!-- End Profile Iamge Icon -->
 
-        <a class="nav-link nav-profile d-flex align-items-center pe-0" href="#" data-bs-toggle="dropdown">
-            <img src="assets/img/profilku.jpg" alt="Profile" class="rounded-circle">
-          </a><!-- End Profile Iamge Icon -->
+                    <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow profile">
+                        <li class="dropdown-header">
+                            <h6><?php echo isset($_SESSION['username']) ? htmlspecialchars($_SESSION['username']) : 'Guest'; ?></h6>
+                            <span>Admin</span>
+                        </li>
+                        <li>
+                            <a class="dropdown-item d-flex align-items-center" href="logout.php">
+                                <i class="bi bi-box-arrow-right"></i>
+                                <span>Sign Out</span>
+                            </a>
+                        </li>
 
-          <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow profile">
-            <li class="dropdown-header">
-              <h6>AFIQ</h6>
-              <span>Admin</span>
-            </li>
-            <li>
-              <hr class="dropdown-divider">
-            </li>
+                    </ul><!-- End Profile Dropdown Items -->
+                </li><!-- End Profile Nav -->
 
-
-
-            <li>
-              <a class="dropdown-item d-flex align-items-center" href="#">
-                <i class="bi bi-box-arrow-right"></i>
-                <span>Sign Out</span>
-              </a>
-            </li>
-
-          </ul><!-- End Profile Dropdown Items -->
-        </li><!-- End Profile Nav -->
+            </ul>
+        </nav><!-- End Icons Navigation -->
 
 
       </ul>
@@ -121,24 +137,20 @@ if (isset($_POST['simpan'])) {
   <!-- =======    Sidebar   ======= -->
   <aside id="sidebar" class="sidebar">
 
-    <ul class="sidebar-nav" id="sidebar-nav">
+<ul class="sidebar-nav" id="sidebar-nav">
 
-      <li class="nav-item">
-        <a class="nav-link " href="index.php">
-          <i class="bi bi-grid"></i>
-          <span>Beranda</span>
+    <li class="nav-item">
+        <a class="nav-link collapsed" href="index.php">
+            <i class="bi bi-house-door"></i>
+            <span>Beranda</span>
         </a>
-      </li><!-- End Beranda Nav -->
-
-      <li class="nav-item">
-
-
-      <li class="nav-item">
-        <a class="nav-link collapsed" href="kategori.php">
-          <i class="bi bi-search"></i>
-          <span>Kategori Produk</span>
+    </li><!-- End Dashboard Nav -->
+    <li class="nav-item">
+        <a class="nav-link " href="kategori.php">
+            <i class="bi bi-tags"></i>
+            <span>Kategori</span>
         </a>
-      </li><!-- End Profile Page Nav -->
+    </li><!-- End Kategori Page Nav -->
 
       <li class="nav-item">
         <a class="nav-link collapsed" href="produk.php">

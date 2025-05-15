@@ -16,8 +16,38 @@ if (!isset($_SESSION["status"]) || $_SESSION["status"] !== "admin") {
   </script>";
     exit;
 }
-?>
 
+if (isset($_POST['simpan'])) {
+    // Ambil ID terakhir dari tb_user
+    $auto = mysqli_query($koneksi, "SELECT MAX(id_user) AS max_code FROM tb_user");
+    $hasil = mysqli_fetch_array($auto);
+    $code = $hasil['max_code'];
+
+    // Menghasilkan ID baru dengan format U001, U002, dst.
+    $urutan = (int)substr($code, 1, 3);
+    $urutan++;
+    $huruf = "U";
+    $id_user = $huruf . sprintf("%03s", $urutan);
+
+    // Ambil input dari form
+    $username = $_POST['username'];
+    $password = password_hash($_POST['password'], PASSWORD_DEFAULT); // Hash password
+    $status = $_POST['status'];
+
+    // Query untuk insert data ke tb_user
+    $query = mysqli_query($koneksi, "INSERT INTO tb_user (id_user, username, password, status) 
+                                     VALUES ('$id_user', '$username', '$password', '$status')");
+
+    // Notifikasi
+    if ($query) {
+        echo "<script>alert('Data pengguna berhasil ditambahkan!');</script>";
+        header("refresh:0, pengguna.php");
+    } else {
+        echo "<script>alert('Data pengguna gagal ditambahkan!');</script>";
+        header("refresh:0, pengguna.php");
+    }
+}
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -25,7 +55,7 @@ if (!isset($_SESSION["status"]) || $_SESSION["status"] !== "admin") {
     <meta charset="utf-8">
     <meta content="width=device-width, initial-scale=1.0" name="viewport">
 
-    <title>Produk - FutureHouse Admin</title>
+    <title>Pengguna - FutureHouse Admin</title>
     <meta content="" name="description">
     <meta content="" name="keywords">
 
@@ -48,7 +78,6 @@ if (!isset($_SESSION["status"]) || $_SESSION["status"] !== "admin") {
 
     <!-- Template Main CSS File -->
     <link href="assets/css/style.css" rel="stylesheet">
-
 </head>
 
 <body>
@@ -66,6 +95,7 @@ if (!isset($_SESSION["status"]) || $_SESSION["status"] !== "admin") {
 
         <nav class="header-nav ms-auto">
             <ul class="d-flex align-items-center">
+
                 <li class="nav-item dropdown pe-3">
 
                     <a class="nav-link nav-profile d-flex align-items-center pe-0" href="#" data-bs-toggle="dropdown">
@@ -95,7 +125,7 @@ if (!isset($_SESSION["status"]) || $_SESSION["status"] !== "admin") {
    <!-- ======= Sidebar ======= -->
    <aside id="sidebar" class="sidebar">
 
-<ul class="sidebar-nav" id="sidebar-nav">
+    <ul class="sidebar-nav" id="sidebar-nav">
 
     <li class="nav-item">
         <a class="nav-link collapsed" href="index.php">
@@ -111,7 +141,7 @@ if (!isset($_SESSION["status"]) || $_SESSION["status"] !== "admin") {
     </li><!-- End Kategori Page Nav -->
 
     <li class="nav-item">
-        <a class="nav-link " href="produk.php">
+        <a class="nav-link collapsed" href="produk.php">
             <i class="bi bi-box-seam"></i>
             <span>Produk</span>
         </a>
@@ -139,7 +169,7 @@ if (!isset($_SESSION["status"]) || $_SESSION["status"] !== "admin") {
     </li><!-- End Laporan Page Nav -->
 
     <li class="nav-item">
-        <a class="nav-link collapsed" href="pengguna.php">
+        <a class="nav-link " href="pengguna.php">
             <i class="bi bi-person"></i>
             <span>Pengguna</span>
         </a>
@@ -151,111 +181,53 @@ if (!isset($_SESSION["status"]) || $_SESSION["status"] !== "admin") {
     <main id="main" class="main">
 
         <div class="pagetitle">
-            <h1>Produk</h1>
+            <h1>Pengguna</h1>
             <nav>
                 <ol class="breadcrumb">
                     <li class="breadcrumb-item"><a href="index.php">Beranda</a></li>
-                    <li class="breadcrumb-item active">Produk</li>
+                    <li class="breadcrumb-item">Pengguna</li>
+                    <li class="breadcrumb-item active">Tambah</li>
                 </ol>
             </nav>
         </div><!-- End Page Title -->
 
-        <div class="row">
-            <div class="col-lg-12">
-                <div class="card">
-                    <div class="card-body">
-                        <a href="t_produk.php" class="btn btn-primary mt-3">
-                            <i class="bi bi-plus-lg"></i> Tambah Data
-                        </a>
-                    </div>
-                </div>
-            </div>
-        </div>
-
         <section class="section">
             <div class="row">
-                <div class="col-lg-12">
+                <div class="col-lg-6">
                     <div class="card">
                         <div class="card-body">
-                            <!-- Table with stripped rows -->
-                            <table class="table table-striped mt-2">
-                                <thead>
-                                    <tr>
-                                        <th>No</th>
-                                        <th>Nama Produk</th>
-                                        <th>Harga</th>
-                                        <th>Stok</th>
-                                        <th>Deskripsi</th>
-                                        <th>Kategori</th>
-                                        <th>Gambar</th>
-                                        <th>Aksi</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    <?php
-                                    include "koneksi.php";
-                                    $no = 1;
+                            <form class="row g-3 mt-2" method="post">
+                                <!-- Username -->
+                                <div class="col-12">
+                                    <label for="username" class="form-label">Username</label>
+                                    <input type="text" class="form-control" id="username" name="username" placeholder="Masukkan Username" maxlength="100" required>
+                                </div>
 
-                                    // Ambil keyword pencarian dari GET
-                                    $query = isset($_GET['query']) ? mysqli_real_escape_string($koneksi, $_GET['query']) : '';
+                                <!-- Password -->
+                                <div class="col-12">
+                                    <label for="password" class="form-label">Password</label>
+                                    <input type="password" class="form-control" id="password" name="password" placeholder="Masukkan Password" required>
+                                </div>
 
-                                    // Tambahkan WHERE jika query tidak kosong
-                                    $sql_query = "SELECT tb_produk.*, tb_kategori.nm_kategori 
-              FROM tb_produk 
-              LEFT JOIN tb_kategori ON tb_produk.id_kategori = tb_kategori.id_kategori";
+                                <!-- Status -->
+                                <div class="col-12">
+                                    <label for="status" class="form-label">Status</label>
+                                    <select class="form-select" id="status" name="status" required>
+                                        <option value="">Pilih Status</option>
+                                        <option value="admin">Admin</option>
+                                        <option value="customer">Customer</option>
+                                    </select>
+                                </div>
 
-                                    if (!empty($query)) {
-                                        $sql_query .= " WHERE tb_produk.nm_produk LIKE '%$query%' 
-                    OR tb_kategori.nm_kategori LIKE '%$query%'
-                    OR tb_produk.desk LIKE '%$query%'";
-                                    }
-
-                                    $sql = mysqli_query($koneksi, $sql_query);
-
-                                    if (mysqli_num_rows($sql) > 0) {
-                                        while ($hasil = mysqli_fetch_array($sql)) {
-                                    ?>
-                                            <tr>
-                                                <td><?php echo $no++; ?></td>
-                                                <td><?php echo $hasil['nm_produk']; ?></td>
-                                                <td>Rp <?php echo number_format($hasil['harga'], 0, ',', '.'); ?></td>
-                                                <td><?php echo $hasil['stok']; ?></td>
-                                                <td><?php echo $hasil['desk']; ?></td>
-                                                <td><?php echo $hasil['nm_kategori']; ?></td>
-                                                <td>
-                                                    <?php if (!empty($hasil['gambar'])) { ?>
-                                                        <img src="produk_img/<?php echo $hasil['gambar']; ?>" width="100">
-                                                    <?php } else { ?>
-                                                        Tidak ada gambar
-                                                    <?php } ?>
-                                                </td>
-                                                <td>
-                                                    <a href="e_produk.php?id=<?php echo $hasil['id_produk']; ?>" class="btn btn-warning">
-                                                        <i class="bi bi-pencil-square"></i>
-                                                    </a>
-                                                    <a href="h_produk.php?id=<?php echo $hasil['id_produk']; ?>" class="btn btn-danger" onclick="return confirm('Apakah Anda Yakin Ingin Menghapus Data?')">
-                                                        <i class="bi bi-trash"></i>
-                                                    </a>
-                                                </td>
-                                            </tr>
-                                        <?php
-                                        }
-                                    } else {
-                                        ?>
-                                        <tr>
-                                            <td colspan="8" class="text-center">Data tidak ditemukan</td>
-                                        </tr>
-                                    <?php
-                                    }
-                                    ?>
-
-                                </tbody>
-                            </table>
-                            <!-- End Table with stripped rows -->
+                                <!-- Tombol -->
+                                <div class="text-center">
+                                    <button type="reset" class="btn btn-secondary">Reset</button>
+                                    <button type="submit" class="btn btn-primary" name="simpan">Simpan</button>
+                                </div>
+                            </form>
 
                         </div>
                     </div>
-
                 </div>
             </div>
         </section>
@@ -268,7 +240,6 @@ if (!isset($_SESSION["status"]) || $_SESSION["status"] !== "admin") {
       &copy; Copyright <strong><span>FutureHouse</span></strong>. All Rights Reserved
     </div>
     <div class="credits">
-
       Designed by <a href="https://www.instagram.com/afiqfc21/"target="blank"> OnlyTeamFc</a>
     </div>
   </footer><!-- End Footer -->
