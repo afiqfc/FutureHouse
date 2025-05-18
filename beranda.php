@@ -33,7 +33,7 @@
           <div class="row align-items-center">
               <div class="col-lg-12">
                   <nav class="navbar navbar-expand-lg navbar-light">
-                      <a class="navbar-brand" href="index.html"> <h2>FutureHouse</h2> </a>
+                      <a class="navbar-brand" href="beranda.php""> <h2>FutureHouse</h2> </a>
                       <button class="navbar-toggler" type="button" data-toggle="collapse"
                           data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
                           aria-expanded="false" aria-label="Toggle navigation">
@@ -58,11 +58,53 @@
                               </li>
                           </ul>
                       </div>
-                      <div>
-                        <a class="btn" href="login.php">
-                           <b> Login </b>
-                        </a>
-                      </div>
+
+                      <?php session_start(); ?>
+                        <?php if (isset($_SESSION['username'])) : ?>
+                        <div class="header_icon d-flex">
+                            <!-- cart link -->
+                             <?php
+                             include 'admin/koneksi.php';
+
+                             $user_id = $_SESSION['id_user'] ?? null;
+
+                             if ($user_id) {
+                                $query = "SELECT COUNT(*) as total FROM tb_pesanan WHERE id_user = '$user_id'";
+                                $result = mysqli_query($koneksi, $query);
+                                $data = mysqli_fetch_assoc($result);
+                                $jumlah_item = $data['total'] ?? 0;
+                                } else {
+                                    $jumlah_item = 0;
+                             }
+                             ?>
+
+                             <a href="cart.php" id="cartlink" style="position: relative; display: inline-block;">
+                                <i class="fas fa-cart-plus" style="font-size: 16px;"></i>
+                                <span class="cart-badge"><?= $jumlah_item ?></span>
+                             </a>
+
+                             <!-- user dropdown -->
+                            <div class="dropdown user">
+                                <a class="dropdown-toggle d-flex align-items-center" href="#" id="userDropdown" role="button"
+                                    data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                    <i class="fas fa-user"></i>
+                                    <span class="ml-2 text-dark"><?= htmlspecialchars($_SESSION['username']); ?></span> <!-- mennampilkan username dari session -->
+                                </a>
+                                <div class="dropdown-menu dropdown-menu-right" aria-labelledby="userDropdown">
+                                    <a class="dropdown-item" href="logout.php">Logout</a>
+                                </div>
+                                <!-- <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                    <div class="single_product">
+    
+                                    </div>
+                                </div> -->
+
+                            </div>
+                        </div>
+
+                        <?php else : ?>
+                            <a href="login.php" class="btn"><b>Login</b></a>
+                        <?php endif; ?>
                   </nav>
               </div>
           </div>
@@ -90,8 +132,7 @@
                                 <div class="col-lg-5 col-md-8">
                                     <div class="banner_text">
                                         <div class="banner_text_iner">
-                                            <h1>Wood & Cloth
-                                                Sofa</h1>
+                                            <h1>Miracle Sofa</h1>
                                             <p>Incididunt ut labore et dolore magna aliqua quis ipsum
                                                 suspendisse ultrices gravida. Risus commodo viverra</p>
                                             <a href="#" class="btn_2">buy now</a>

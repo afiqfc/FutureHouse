@@ -1,3 +1,33 @@
+<?php
+session_start();
+
+require "admin/koneksi.php";
+
+if (isset($_POST["login"])) {
+    $username = $_POST["username"];
+    $password = $_POST["password"];
+
+    $result = mysqli_query($koneksi, "SELECT * FROM tb_user WHERE username = '$username'");
+
+    //cek username
+    if (mysqli_num_rows($result) === 1) {
+        //cek password
+        $row = mysqli_fetch_assoc($result);
+        if (password_verify($password, $row["password"])) {
+            //set session
+            $_SESSION["login"] = true;
+            $_SESSION["username"] = $row["username"];
+            $_SESSION["id_user"] = $row["id_user"];
+            header("refresh:0; beranda.php");
+        } else {
+            echo "<script>alert('Username atau password yang anda masukkan salah');</script>";
+        }
+    } else {
+        echo "<script>alert('Username atau password yang anda masukkan salah');</script>";
+    }
+}
+?>
+
 <!doctype html>
 <html lang="zxx">
 
@@ -66,7 +96,7 @@
                                 Untuk Melanjutkan</h3>
                             <form class="row contact_form" action="#" method="post" novalidate="novalidate">
                                 <div class="col-md-12 form-group p_star">
-                                    <input type="text" class="form-control" id="name" name="name" value=""
+                                    <input type="text" class="form-control" id="username" name="username" value=""
                                         placeholder="Username">
                                 </div>
                                 <div class="col-md-12 form-group p_star">
@@ -77,7 +107,7 @@
                                     <div class="creat_account d-flex align-items-center">
                                         
                                     </div>
-                                    <button type="submit" value="submit" class="btn_3">
+                                    <button type="submit" value="submit" class="btn_3" name="login">
                                         log in
                                     </button>
                                 </div>

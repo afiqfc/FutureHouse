@@ -1,3 +1,13 @@
+<?php
+
+require 'admin/koneksi.php';
+require 'function.php';
+$sql = mysqli_query($koneksi, "select * from tb_user");
+$data = mysqli_fetch_array($sql);
+
+
+?>
+
 <!doctype html>
 <html lang="zxx">
 
@@ -27,67 +37,19 @@
 </head>
 
 <body>
+<?php
+    if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+        if (registrasi($_POST)) {
+            echo "<script>alert('User baru berhasil ditambahkan');";
+            echo "window.location.href = 'login.php';</script>";
+            exit;
+        } else {
+            echo "<script>alert('Registrasi gagal')</script>";
+        }
+    }
+    ?>
+
     <!--::header part start::-->
-    <header class="main_menu home_menu">
-      <div class="container">
-          <div class="row align-items-center">
-              <div class="col-lg-12">
-                  <nav class="navbar navbar-expand-lg navbar-light">
-                      <a class="navbar-brand" href="index.html"> <h2>FutureHouse</h2> </a>
-                      <button class="navbar-toggler" type="button" data-toggle="collapse"
-                          data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
-                          aria-expanded="false" aria-label="Toggle navigation">
-                          <span class="menu_icon"><i class="fas fa-bars"></i></span>
-                      </button>
-
-                      <div class="collapse navbar-collapse main-menu-item" id="navbarSupportedContent">
-                          <ul class="navbar-nav">
-                              <li class="nav-item">
-                                  <a class="nav-link" href="beranda.php">Beranda</a>
-                              </li>
-                              <li class="navbar-nav">
-                                  <a class="nav-link" href="belanja.php">
-                                      Belanja
-                                  </a>
-                                  <div class="dropdown-menu" aria-labelledby="navbarDropdown_2">
-                                  </div>
-                              </li>
-
-                              <li class="nav-item">
-                                  <a class="nav-link" href="contact.php">Hubungi Kami</a>
-                              </li>
-                          </ul>
-                      </div>
-                      <div class="hearer_icon d-flex">
-                          <a id="search_1" href="javascript:void(0)"><i class="ti-search"></i></a>
-                          <a href=""><i class="ti-heart"></i></a>
-                          <div class="dropdown cart">
-                              <a class="dropdown-toggle" href="#" id="navbarDropdown3" role="button"
-                                  data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                  <i class="fas fa-cart-plus"></i>
-                              </a>
-                              <!-- <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                                  <div class="single_product">
-  
-                                  </div>
-                              </div> -->
-
-                          </div>
-                      </div>
-                  </nav>
-              </div>
-          </div>
-      </div>
-      <div class="search_input" id="search_input_box">
-          <div class="container ">
-              <form class="d-flex justify-content-between search-inner">
-                  <input type="text" class="form-control" id="search_input" placeholder="Search Here">
-                  <button type="submit" class="btn"></button>
-                  <span class="ti-close" id="close_search" title="Close Search"></span>
-              </form>
-          </div>
-      </div>
-  </header>
 <!--::END header part start::-->
 
 
@@ -127,23 +89,20 @@
                                 Dan Manjakan Rumahmu!</h3>
                             <form class="row contact_form" action="#" method="post" novalidate="novalidate">
                                 <div class="col-md-12 form-group p_star">
-                                    <input type="text" class="form-control" id="name" name="name" value=""
-                                        placeholder="Username">
+                                    <input type="text" class="form-control" id="username" name="username" placeholder="Username">
                                 </div>
                                 <div class="col-md-12 form-group p_star">
-                                    <input type="password" class="form-control" id="password" name="password" value=""
-                                        placeholder="Password">
+                                    <input type="password" class="form-control" id="password" name="password" placeholder="Password">
                                 </div>
                                 <div class="col-md-12 form-group p_star">
-                                    <input type="password" class="form-control" id="password" name="password" value=""
-                                        placeholder="Konfirmasi Password">
+                                    <input type="password" class="form-control" id="confirm_password" name="password2" placeholder="Konfirmasi Password">
                                 </div>
                                 <div class="col-md-12 form-group">
                                     <div class="creat_account d-flex align-items-center">
                                         
                                     </div>
-                                    <button type="submit" value="submit" class="btn_3">
-                                        log in
+                                    <button type="submit" value="submit" class="btn_3" name ="Register">
+                                        Daftar!
                                     </button>
                                 </div>
                             </form>
