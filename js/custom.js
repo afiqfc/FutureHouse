@@ -61,12 +61,12 @@
         768: {
           margin: 30,
           items: 3,
-          nav: true
+          nav: false
         },
         991: {
           margin: 30,
           items: 4,
-          nav: true
+          nav: false
         }
       }
     });

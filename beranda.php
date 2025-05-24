@@ -665,15 +665,12 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> All r
                         </div>
                     </div>
                     <div class="col-lg-4">
-                        <div class="footer_icon social_icon">
-                            <ul class="list-unstyled">
-                                <li><a href="#" class="single_social_icon"><i class="fab fa-facebook-f"></i></a></li>
-                                <li><a href="#" class="single_social_icon"><i class="fab fa-twitter"></i></a></li>
-                                <li><a href="#" class="single_social_icon"><i class="fas fa-globe"></i></a></li>
-                                <li><a href="#" class="single_social_icon"><i class="fab fa-behance"></i></a></li>
-                            </ul>
-                        </div>
-                    </div>
+            <div class="footer_icon social_icon">
+              <ul class="list-unstyled">
+                <li><a href="https://instagram.com/afiqfc21" target="_blank" class="single_social_icon"><i class="fab fa-instagram"></i></a></li>
+              </ul>
+            </div>
+          </div>
                 </div>
             </div>
         </div>
