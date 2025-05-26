@@ -80,11 +80,6 @@
                              }
                              ?>
 
-                             <a href="cart.php" id="cartlink" style="position: relative; display: inline-block;">
-                                <i class="fas fa-cart-plus" style="font-size: 16px;"></i>
-                                <span class="cart-badge"><?= $jumlah_item ?></span>
-                             </a>
-
                              <!-- user dropdown -->
                             <div class="dropdown user">
                                 <a class="dropdown-toggle d-flex align-items-center" href="#" id="userDropdown" role="button"
