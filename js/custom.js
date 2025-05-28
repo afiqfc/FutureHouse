@@ -265,44 +265,32 @@
   }
 // click counter js
 (function() {
- 
-  window.inputNumber = function(el) {
 
-    var min = el.attr('min') || false;
-    var max = el.attr('max') || false;
+  window.inputNumber = function(selector) {
+    $(selector).each(function() {
+      var $input = $(this);
+      var min = parseInt($input.attr('min'), 10);
+      var max = parseInt($input.attr('max'), 10);
+      var $dec = $input.prev();
+      var $inc = $input.next();
 
-    var els = {};
+      $dec.on('click', function() {
+        var value = parseInt($input.val(), 10) || 0;
+        if (isNaN(min) || value > min) {
+          $input.val(value - 1);
+        }
+      });
 
-    els.dec = el.prev();
-    els.inc = el.next();
-
-    el.each(function() {
-      init($(this));
+      $inc.on('click', function() {
+        var value = parseInt($input.val(), 10) || 0;
+        if (isNaN(max) || value < max) {
+          $input.val(value + 1);
+        }
+      });
     });
+  };
 
-    function init(el) {
-
-      els.dec.on('click', decrement);
-      els.inc.on('click', increment);
-
-      function decrement() {
-        var value = el[0].value;
-        value--;
-        if(!min || value >= min) {
-          el[0].value = value;
-        }
-      }
-
-      function increment() {
-        var value = el[0].value;
-        value++;
-        if(!max || value <= max) {
-          el[0].value = value++;
-        }
-      }
-    }
-  }
-})();
+})(); 
 
 inputNumber($('.input-number'));
 

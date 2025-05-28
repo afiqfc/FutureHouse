@@ -190,12 +190,13 @@
                                             <h5>Rp.<?php echo number_format($row['harga'], 0, ',', '.'); ?></h5>
                                         </td>
                                         <td>
-                                            <div class="product_count">
-                                                <span class="input-number-decrement"><i class="ti-angle-down"></i></span>
-                                                <input class="input-number" type="number" name="qty[<?php echo $row['id_pesanan']; ?>]" value="<?php echo $row['qty']; ?>" min="1">
-                                                <span class="input-number-increment"><i class="ti-angle-up"></i></span>
-                                            </div>
-                                        </td>
+                                        <td>
+    <div class="product_count">
+        <span class="input-number-decrement"><i class="ti-angle-down"></i></span>
+        <input class="input-number" type="number" name="qty[<?php echo $row['id_pesanan']; ?>]" value="<?php echo $row['qty']; ?>" min="1">
+        <span class="input-number-increment"><i class="ti-angle-up"></i></span>
+    </div>
+</td>
                                         <td>
                                             <h5>Rp.<?php echo number_format($row['total'], 0, ',', '.'); ?></h5>
                                         </td>
