@@ -1,24 +1,3 @@
-<?php
-session_start();
-include "koneksi.php";
-
-// Cek apakah sudah login
-if (!isset($_SESSION["login"])) {
-    header("Location: login.php");
-    exit;
-}
-
-// Cek apakah status tersedia dan pastikan user adalah admin
-if (!isset($_SESSION["status"]) || $_SESSION["status"] !== "admin") {
-    echo "<script>
-    alert('Akses ditolak! Halaman ini hanya untuk Admin.');
-    window.location.href='login.php';
-  </script>";
-    exit;
-}
-?>
-
-
 <!doctype html>
 <html lang="zxx">
 
@@ -157,7 +136,7 @@ if (!isset($_SESSION["status"]) || $_SESSION["status"] !== "admin") {
                     <?php
                     include 'admin/koneksi.php'; //pastikan koneksi ke database sudah benar
 
-                    if (isset($_SESSION['id'])) {
+                    if (!isset($_SESSION['id_user'])) {
                         echo "<script>alert('Silahkan login terlebih dahulu!'); window.location='login.php';</script>";
                         exit;
                     }
