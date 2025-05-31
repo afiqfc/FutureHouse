@@ -71,7 +71,7 @@ $html = '<html>
     </style>
 </head>
 <body>
-    <h1 align="center">inverse</h1>
+    <h1 align="center">FutureHouse</h1>
     <hr>
     <h1 align="center">LAPORAN PRODUK BERDASARKAN KATEGORI</h1>
 
