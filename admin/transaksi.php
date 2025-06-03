@@ -199,7 +199,7 @@ if (!isset($_SESSION["status"]) || $_SESSION["status"] !== "admin") {
                                 if ($result_kategori->num_rows > 0) {
                                     while ($row = $result_kategori->fetch_assoc()) {
                                      $selected = ($kategori_filter == $row['id_kategori']) ? "selected" :"";
-                                     echo "<option value='" . $row['id_lategori'] . "' $selected>" . htmlspecialchars($row['nm_kategori']) . "</option>";
+                                     echo "<option value='" . $row['id_kategori'] . "' $selected>" . htmlspecialchars($row['nm_kategori']) . "</option>";
                                     }
                                 }
                                 ?>

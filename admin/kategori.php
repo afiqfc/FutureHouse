@@ -74,7 +74,7 @@ if (!isset($_SESSION["status"]) || $_SESSION["status"] !== "admin") {
     <div class="search-bar">
       <form class="search-form d-flex align-items-center" method="POST" action="">
         <input type="text" name="query" placeholder="Search" title="Enter search keyword" 
-        value="<?php echo isset($_POST ['query']) ? htmlspecialchars($_P0ST['query']) : ''; ?>">
+        value="<?php echo isset($_POST ['query']) ? htmlspecialchars($_POST['query']) : ''; ?>">
         <button type="submit" title="Search"><i class="bi bi-search"></i></button>
       </form>
     </div><!-- End Search Bar -->
@@ -177,11 +177,11 @@ if (!isset($_SESSION["status"]) || $_SESSION["status"] !== "admin") {
   <main id="main" class="main">
 
     <div class="pagetitle">
-      <h1>Kategori Produk</h1>
+      <h1>Kategori </h1>
       <nav>
         <ol class="breadcrumb">
           <li class="breadcrumb-item"><a href="index.php">Beranda</a></li>
-          <li class="breadcrumb-item active">Kategori Produk</li>
+          <li class="breadcrumb-item active">Kategori </li>
         </ol>
       </nav>
     </div><!-- End Page Title -->
