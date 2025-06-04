@@ -195,11 +195,11 @@ if (!isset($_SESSION["status"]) || $_SESSION["status"] !== "admin") {
   <main id="main" class="main">
 
     <div class="pagetitle">
-      <h1>Kategori produk</h1>
+      <h1>Kategori </h1>
       <nav>
         <ol class="breadcrumb">
           <li class="breadcrumb-item"><a href="index.php">Beranda</a></li>
-          <li class="breadcrumb-item">Kategori produk</li>
+          <li class="breadcrumb-item">Kategori</li>
           <li class="breadcrumb-item active">Tambah</li>
         </ol>
       </nav>

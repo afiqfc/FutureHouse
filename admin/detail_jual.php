@@ -25,7 +25,7 @@ if (!isset($_SESSION["status"]) || $_SESSION["status"] !== "admin") {
     <meta charset="utf-8">
     <meta content="width=device-width, initial-scale=1.0" name="viewport">
 
-    <title>Produk - FutureHouse Admin</title>
+    <title>Detail Jual - FutureHouse Admin</title>
     <meta content="" name="description">
     <meta content="" name="keywords">
 
@@ -151,10 +151,11 @@ if (!isset($_SESSION["status"]) || $_SESSION["status"] !== "admin") {
     <main id="main" class="main">
 
         <div class="pagetitle">
-            <h1>Detail Jual</h1>
+            <h1>Laporan</h1>
             <nav>
                 <ol class="breadcrumb">
                     <li class="breadcrumb-item"><a href="index.php">Beranda</a></li>
+                    <li class="breadcrumb-item"><a href="transaksi.php">Transaksi</a></li>
                     <li class="breadcrumb-item active">Detail Jual</li>
                 </ol>
             </nav>
