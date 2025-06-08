@@ -218,31 +218,32 @@ if (!isset($_SESSION["status"]) || $_SESSION["status"] !== "admin") {
 
                                 <h5>Detail Pembelian:</h5>
                                 <table class="table table-bordered">
-                                    <thead>
-                                        <tr>
-                                            <th>No</th>
-                                            <th>Nama Produk</th>
-                                            <th>Harga</th>
-                                            <th>Qty</th>
-                                            <th>Subtotal</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        <?php
-                                        $no = 1;
-                                        while ($d = mysqli_fetch_assoc($detail)) :
-                                        ?>
-                                            <tr>
-                                                <td><?= $no++ ?></td>
-                                                <td><?= $d['nm_produk'] ?></td>
-                                                <td>Rp <?= number_format($d['harga_produk'], 0, ',', '.') ?></td>
-                                                <td><?= $d['qty'] ?></td>
-                                                <td>Rp <?= number_format($d['subtotal'], 0, ',', '.') ?></td>
-                                            </tr>
-                                        <?php endwhile; ?>
-                                    </tbody>
-                                </table>
-
+    <thead>
+        <tr>
+            <th>No</th>
+            <th>Nama Produk</th>
+            <th>Harga</th>
+            <th>Diskon</th>
+            <th>Qty</th>
+            <th>Subtotal</th>
+        </tr>
+    </thead>
+    <tbody>
+        <?php
+        $no = 1;
+        while ($d = mysqli_fetch_assoc($detail)) :
+        ?>
+            <tr>
+                <td><?= $no++ ?></td>
+                <td><?= $d['nm_produk'] ?></td>
+                <td>Rp <?= number_format($d['harga_produk'], 0, ',', '.') ?></td>
+                <td>Rp <?= number_format($jual['diskon'], 0, ',', '.') ?></td>
+                <td><?= $d['qty'] ?></td>
+                <td>Rp <?= number_format($jual['total'], 0, ',', '.') ?></td>
+            </tr>
+        <?php endwhile; ?>
+    </tbody>
+</table>
                             </div>
                             <a href="transaksi.php" class="btn btn-secondary">Kembali</a>
                         </div>

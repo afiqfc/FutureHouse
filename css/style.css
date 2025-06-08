@@ -14,6 +14,32 @@
 /**************** extend css start ****************/
 /**************** common css start ****************/
 /* line 4, ../../01 cl html template/03_jun 2019/188_Aranoz shop_html/sass/_common.scss */
+
+.btn_2.feature_btn {
+  display: inline-flex; /* gunakan flex agar teks dan ikon rata */
+  align-items: center;
+  justify-content: center;
+  padding: 12px 24px;
+  font-size: 16px;
+  font-weight: 700;
+  background-color: #ff3368;
+  color: white;
+  border-radius: 10px;
+  border: none;
+  text-decoration: none;
+  line-height: 1.2;
+  transition: background-color 0.3s ease;
+}
+
+.btn_2.feature_btn i {
+  margin-left: 8px;
+  font-size: 14px;
+}
+
+.btn_2.feature_btn:hover {
+  background-color: #e6004c;
+}
+
 body {
   font-family: "Poppins", sans-serif;
   padding: 0;
@@ -7776,3 +7802,4 @@ h6 {
 }
 
 /*# sourceMappingURL=style.css.map */
+

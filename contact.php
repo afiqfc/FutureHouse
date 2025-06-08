@@ -133,51 +133,31 @@
   <section class="contact-section padding_top">
     <div class="container">
       <div class="d-none d-sm-block mb-5 pb-4">
-        <div id="map" style="height: 480px;"></div>
-        <script>
-          function initMap() {
-            var uluru = {
-              lat: -25.363,
-              lng: 131.044
-            };
-            var grayStyles = [{
-                featureType: "all",
-                stylers: [{
-                    saturation: -90
-                  },
-                  {
-                    lightness: 50
-                  }
-                ]
-              },
-              {
-                elementType: 'labels.text.fill',
-                stylers: [{
-                  color: '#ccdee9'
-                }]
-              }
-            ];
-            var map = new google.maps.Map(document.getElementById('map'), {
-              center: {
-                lat: -31.197,
-                lng: 150.744
-              },
-              zoom: 9,
-              styles: grayStyles,
-              scrollwheel: false
-            });
-          }
-        </script>
-        <script
-          src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDpfS1oRGreGSBU5HHjMmQ3o5NLw7VdJ6I&callback=initMap">
-        </script>
+      <div id="map" style="display: none;"></div> 
+      <style>
+  .map-container iframe {
+    width: 100%;
+    height: 600px; /* Ubah nilai ini sesuai kebutuhan, misal 700px atau 800px */
+    border: 0;
+    border-radius: 10px; /* Opsional: buat sudut tumpul */
+    display: block;
+  }
+</style>
+      <div class="map-container">
+  <iframe 
+    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3958.973730217078!2d111.58744367410984!3d-7.1290351699173575!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e776411abeabb93%3A0x3ccba806cf9ef497!2sSTT%20Ronggolawe%20Cepu!5e0!3m2!1sid!2sid!4v1743766946322!5m2!1sid!2sid" 
+    loading="fast" 
+    referrerpolicy="no-referrer-when-downgrade" 
+    allowfullscreen>
+  </iframe>
+</div>
 
       </div>
 
 
       <div class="row">
         <div class="col-12">
-          <h2 class="contact-title">Get in Touch</h2>
+          <h2 class="contact-title">Menghubungi</h2>
         </div>
         <div class="col-lg-8">
           <form class="form-contact contact_form" action="contact_process.php" method="post" id="contactForm"
@@ -188,30 +168,30 @@
 
                   <textarea class="form-control w-100" name="message" id="message" cols="30" rows="9"
                     onfocus="this.placeholder = ''" onblur="this.placeholder = 'Enter Message'"
-                    placeholder='Enter Message'></textarea>
+                    placeholder='Kirim Pesan'></textarea>
                 </div>
               </div>
               <div class="col-sm-6">
                 <div class="form-group">
                   <input class="form-control" name="name" id="name" type="text" onfocus="this.placeholder = ''"
-                    onblur="this.placeholder = 'Enter your name'" placeholder='Enter your name'>
+                    onblur="this.placeholder = 'Enter your name'" placeholder='Masukan Nama'>
                 </div>
               </div>
               <div class="col-sm-6">
                 <div class="form-group">
                   <input class="form-control" name="email" id="email" type="email" onfocus="this.placeholder = ''"
-                    onblur="this.placeholder = 'Enter email address'" placeholder='Enter email address'>
+                    onblur="this.placeholder = 'Enter email address'" placeholder='Masukan Email'>
                 </div>
               </div>
               <div class="col-12">
                 <div class="form-group">
                   <input class="form-control" name="subject" id="subject" type="text" onfocus="this.placeholder = ''"
-                    onblur="this.placeholder = 'Enter Subject'" placeholder='Enter Subject'>
+                    onblur="this.placeholder = 'Enter Subject'" placeholder='Masukan Subjek '>
                 </div>
               </div>
             </div>
             <div class="form-group mt-3">
-              <a href="#" class="btn_3 button-contactForm">Send Message</a>
+              <a href="#" class="btn_3 button-contactForm">Kirim Pesan</a>
             </div>
           </form>
         </div>
@@ -219,22 +199,22 @@
           <div class="media contact-info">
             <span class="contact-info__icon"><i class="ti-home"></i></span>
             <div class="media-body">
-              <h3>Buttonwood, California.</h3>
-              <p>Rosemead, CA 91770</p>
+              <h3>Cepu, Jawa Tengah</h3>
+              <p>Mentul, Karangboyo</p>
             </div>
           </div>
           <div class="media contact-info">
             <span class="contact-info__icon"><i class="ti-tablet"></i></span>
             <div class="media-body">
-              <h3>00 (440) 9865 562</h3>
-              <p>Mon to Fri 9am to 6pm</p>
+              <h3>089541093236</h3>
+              <p>Aktif Setiap Sen-Jum jam 09:00 - 18:00 WIB</p>
             </div>
           </div>
           <div class="media contact-info">
             <span class="contact-info__icon"><i class="ti-email"></i></span>
             <div class="media-body">
-              <h3>support@colorlib.com</h3>
-              <p>Send us your query anytime!</p>
+              <h3>FutureHouse@gmail.com</h3>
+              <p>Hubungi kami!</p>
             </div>
           </div>
         </div>
@@ -243,93 +223,28 @@
   </section>
   <!-- ================ contact section end ================= -->
 
-  <!--::footer_part start::-->
-  <footer class="footer_part">
+   <!--::footer_part start::-->
+   <footer class="footer_part">
     <div class="container">
       <div class="row justify-content-around">
         <div class="col-sm-6 col-lg-2">
-          <div class="single_footer_part">
-            <h4>Top Products</h4>
-            <ul class="list-unstyled">
-              <li><a href="">Managed Website</a></li>
-              <li><a href="">Manage Reputation</a></li>
-              <li><a href="">Power Tools</a></li>
-              <li><a href="">Marketing Service</a></li>
-            </ul>
-          </div>
-        </div>
-        <div class="col-sm-6 col-lg-2">
-          <div class="single_footer_part">
-            <h4>Quick Links</h4>
-            <ul class="list-unstyled">
-              <li><a href="">Jobs</a></li>
-              <li><a href="">Brand Assets</a></li>
-              <li><a href="">Investor Relations</a></li>
-              <li><a href="">Terms of Service</a></li>
-            </ul>
-          </div>
-        </div>
-        <div class="col-sm-6 col-lg-2">
-          <div class="single_footer_part">
-            <h4>Features</h4>
-            <ul class="list-unstyled">
-              <li><a href="">Jobs</a></li>
-              <li><a href="">Brand Assets</a></li>
-              <li><a href="">Investor Relations</a></li>
-              <li><a href="">Terms of Service</a></li>
-            </ul>
-          </div>
-        </div>
-        <div class="col-sm-6 col-lg-2">
-          <div class="single_footer_part">
-            <h4>Resources</h4>
-            <ul class="list-unstyled">
-              <li><a href="">Guides</a></li>
-              <li><a href="">Research</a></li>
-              <li><a href="">Experts</a></li>
-              <li><a href="">Agencies</a></li>
-            </ul>
-          </div>
-        </div>
-        <div class="col-sm-6 col-lg-4">
-          <div class="single_footer_part">
-            <h4>Newsletter</h4>
-            <p>Heaven fruitful doesn't over lesser in days. Appear creeping
-            </p>
-            <div id="mc_embed_signup">
-              <form target="_blank"
-                action="https://spondonit.us12.list-manage.com/subscribe/post?u=1462626880ade1ac87bd9c93a&amp;id=92a4423d01"
-                method="get" class="subscribe_form relative mail_part">
-                <input type="email" name="email" id="newsletter-form-email" placeholder="Email Address"
-                  class="placeholder hide-on-focus" onfocus="this.placeholder = ''"
-                  onblur="this.placeholder = ' Email Address '">
-                <button type="submit" name="submit" id="newsletter-submit"
-                  class="email_icon newsletter-submit button-contactForm">subscribe</button>
-                <div class="mt-10 info"></div>
-              </form>
-            </div>
-          </div>
-        </div>
       </div>
 
     </div>
     <div class="copyright_part">
-      <div class="container">
-        <div class="row">
-          <div class="col-lg-8">
-            <div class="copyright_text">
-            <P><!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-8">
+                        <div class="copyright_text">
+                        <P><!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
 Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved | by FutureHouse<a href="https://instagram.com/afiqfc21" target="_blank"> OnlyTeamFc</a>
 <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. --></P>
-            </div>
+                        </div>
           </div>
           <div class="col-lg-4">
             <div class="footer_icon social_icon">
               <ul class="list-unstyled">
-                <li><a href="#" class="single_social_icon"><i class="fab fa-facebook-f"></i></a></li>
-                <li><a href="#" class="single_social_icon"><i class="fab fa-twitter"></i></a></li>
-                <li><a href="#" class="single_social_icon"><i class="fas fa-globe"></i></a></li>
-                <li><a href="#" class="single_social_icon"><i class="fab fa-behance"></i></a></li>
+                <li><a href="https://instagram.com/afiqfc21" target="_blank" class="single_social_icon"><i class="fab fa-instagram"></i></a></li>
               </ul>
             </div>
           </div>
