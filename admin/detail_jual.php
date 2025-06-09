@@ -151,7 +151,7 @@ if (!isset($_SESSION["status"]) || $_SESSION["status"] !== "admin") {
     <main id="main" class="main">
 
         <div class="pagetitle">
-            <h1>Laporan</h1>
+            <h1>Detail Jual</h1>
             <nav>
                 <ol class="breadcrumb">
                     <li class="breadcrumb-item"><a href="index.php">Beranda</a></li>

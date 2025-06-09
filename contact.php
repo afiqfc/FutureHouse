@@ -5,7 +5,7 @@
   <!-- Required meta tags -->
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <title>Hubungi- FutureHouse</title>
+  <title>Hubungi Kami - FutureHouse</title>
   <link rel="icon" href="img/favicon.png">
   <!-- Bootstrap CSS -->
   <link rel="stylesheet" href="css/bootstrap.min.css">
@@ -25,6 +25,24 @@
   <!-- style CSS -->
   <link rel="stylesheet" href="css/style.css">
 </head>
+
+<style>
+        .cart-badge {
+            position: absolute;
+            top: -5px;
+            right: -8px;
+            background: #f72a74;
+            color: white;
+            border-radius: 50%;
+            padding: 2px 6px;
+            font-size: 10px;
+            font-weight: bold;
+            line-height: 1;
+            min-width: 16px;
+            text-align: center;
+            z-index: 10;
+        }
+    </style>
 
 <body>
     <!--::header part start::-->
@@ -60,27 +78,27 @@
                       </div>
                       <?php session_start(); ?>
                         <?php if (isset($_SESSION['username'])) : ?>
-                        <div class="header_icon d-flex">
-                            <!-- cart link -->
-                             <?php
-                             include 'admin/koneksi.php';
+                            <div class="header_icon d-flex">
+                                <!-- Cart Link -->
+                                <?php
+                                include 'admin/koneksi.php';
 
-                             $user_id = $_SESSION['id_user'] ?? null;
+                                $user_id = $_SESSION['id_user'] ?? null;
 
-                             if ($user_id) {
-                                $query = "SELECT COUNT(*) as total FROM tb_pesanan WHERE id_user = '$user_id'";
-                                $result = mysqli_query($koneksi, $query);
-                                $data = mysqli_fetch_assoc($result);
-                                $jumlah_item = $data['total'] ?? 0;
+                                if ($user_id) {
+                                    $query = "SELECT COUNT(*) as total FROM tb_pesanan WHERE id_user = '$user_id'";
+                                    $result = mysqli_query($koneksi, $query);
+                                    $data = mysqli_fetch_assoc($result);
+                                    $jumlah_item = $data['total'] ?? 0;
                                 } else {
                                     $jumlah_item = 0;
-                             }
-                             ?>
+                                }
+                                ?>
 
-                             <a href="cart.php" id="cartlink" style="position: relative; display: inline-block;">
-                                <i class="fas fa-cart-plus" style="font-size: 16px;"></i>
-                                <span class="cart-badge"><?= $jumlah_item ?></span>
-                             </a>
+                                <a href="cart.php" id="cartLink" style="position: relative; display: inline-block;">
+                                    <i class="fas fa-cart-plus" style="font-size: 16px;"></i>
+                                    <span class="cart-badge"><?= $jumlah_item ?></span>
+                                </a>
 
                              <!-- user dropdown -->
                             <div class="dropdown user">
